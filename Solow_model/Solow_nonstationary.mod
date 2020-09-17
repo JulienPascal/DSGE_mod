@@ -148,21 +148,7 @@ initval;
     g_Y_per_capita=g; 
     g_Y_intensive=0; 
 end;
-//****************************************************************************
-//shocks-block: define path of exogenous variables
-//****************************************************************************
 
-shock_vals_A=cumprod((1+g)*ones(@{simulation_periods},1))
-shock_vals_L=cumprod((1+n)*ones(@{simulation_periods},1))
-
-shocks;
-    var A;
-    periods 1:@{simulation_periods};
-    values (shock_vals_A);
-    var L;
-    periods 1:@{simulation_periods};
-    values (shock_vals_L);
-end;
 
 //****************************************************************************
 //endval-block: set terminal condition to steady state value
@@ -190,6 +176,22 @@ endval;
     g_Y_aggregate=n+g+n*g;
     g_Y_per_capita=g; 
     g_Y_intensive=0; 
+end;
+
+//****************************************************************************
+//shocks-block: define path of exogenous variables
+//****************************************************************************
+
+shock_vals_A=cumprod((1+g)*ones(@{simulation_periods},1))
+shock_vals_L=cumprod((1+n)*ones(@{simulation_periods},1))
+
+shocks;
+    var A;
+    periods 1:@{simulation_periods};
+    values (shock_vals_A);
+    var L;
+    periods 1:@{simulation_periods};
+    values (shock_vals_L);
 end;
 
 //****************************************************************************
